@@ -4,7 +4,7 @@ Right now I am testing on an XOR encoded payload, but that will change in the fu
 
 ## To-Do
 
-- [ ] Look into using `NtSetInformationThread`
+- [x] Look into using `NtSetInformationThread`
 - [ ] `GetLocalTime()`
 - [ ] `GetSystemTime()`
 - [ ] `ZwGetTickCount()` / `KiGetTickCount()`
