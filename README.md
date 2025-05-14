@@ -17,3 +17,4 @@ Right now I am testing on an XOR encoded payload, but that will change in the fu
 - [ ] AMSI Bypass techniques
 - [ ] Add in Process Hollowing Technique called MerryHollows with p/invoke
 - [ ] MerryHollows with d/invoke
+- [x] Delegate Function obfuscation
