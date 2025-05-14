@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -125,9 +126,33 @@ namespace ShellYaLater.Evasion_Class
             {
                 return;
             }
-           
-        
+
             
+            
+        }
+        //function check if the debugger is present 
+
+        //antidebug thread
+
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetCurrentThreadId();
+
+        [DllImport("kernel32.dll")]
+        private static extern void ExitProcess(uint uExitCode);
+
+        [DllImport("ntdll.dll")]
+        private static extern int NtSetThreadInformation(IntPtr ThreadHandle, int ThreadInformationClass, IntPtr ThreadPriority, long ThreadLength);
+
+        public static void NtSetThreadInformation()
+        {
+            
+            IntPtr ThreadHandle = GetCurrentThreadId();
+            int status = NtSetThreadInformation(ThreadHandle, 0x11, IntPtr.Zero, 0);
+            
+            if (status != 0)
+            {
+                ExitProcess((uint)status);
+            }
         }
 
     }
