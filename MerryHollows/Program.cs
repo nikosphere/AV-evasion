@@ -97,6 +97,23 @@ IntPtr lpProcessAttributes, IntPtr lpThreadAttributes, bool bInheritHandles,
         private delegate uint RTTR(IntPtr hThread);
         private static RTTR THOR;
 
+        //Kernel32
+        //CreateProcess
+
+
+        //ntdll.dll
+        //ZWqueryInformationProcess
+
+        //kernell32.dll
+        //ReadyProcessMemory
+        //kernell32.dll
+        //WriteProcessMemory
+
+
+        //kernel32.dll
+        //ResumeThread
+
+
         static void Main(string[] args)
         {
 
