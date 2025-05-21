@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellYaLater", "ShellYaLater\ShellYaLater.csproj", "{3A33F5BE-D51D-499C-9695-0091D40BD565}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerryHollows", "MerryHollows\MerryHollows.csproj", "{367E9ED5-10D9-4862-A393-D3E14C5C7A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayloadEncoder", "PayloadEncoder\PayloadEncoder.csproj", "{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{367E9ED5-10D9-4862-A393-D3E14C5C7A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{367E9ED5-10D9-4862-A393-D3E14C5C7A9D}.Release|x64.ActiveCfg = Release|Any CPU
 		{367E9ED5-10D9-4862-A393-D3E14C5C7A9D}.Release|x64.Build.0 = Release|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Debug|x64.Build.0 = Debug|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Release|x64.ActiveCfg = Release|Any CPU
+		{5B4B8CE9-AC46-4CD2-802F-BA1988A6648D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
